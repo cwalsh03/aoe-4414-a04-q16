@@ -81,15 +81,15 @@ lat_rad = math.asin(o_z_km/math.sqrt(o_x_km**2+o_y_km**2+o_z_km**2))
 o_lon_km = math.sqrt(o_x_km**2+o_y_km**2)
 prev_lat_rad = float('nan')
 
-# # iteratively find latitude
-# c_E = float('nan')
-# count = 0
-# while (math.isnan(prev_lat_rad) or abs(lat_rad-prev_lat_rad)>10e-7) and count<5:
-#   denom = calc_denom(E_E,lat_rad)
-#   c_E = R_E_KM/denom
-#   prev_lat_rad = lat_rad
-#   lat_rad = math.atan((o_z_km+c_E*(E_E**2)*math.sin(lat_rad))/o_lon_km)
-#   count = count+1
+# iteratively find latitude
+c_E = float('nan')
+count = 0
+while (math.isnan(prev_lat_rad) or abs(lat_rad-prev_lat_rad)>10e-7) and count<5:
+  denom = calc_denom(E_E,lat_rad)
+  c_E = R_E_KM/denom
+  prev_lat_rad = lat_rad
+  lat_rad = math.atan((o_z_km+c_E*(E_E**2)*math.sin(lat_rad))/o_lon_km)
+  count = count+1
   
 denom = calc_denom(E_E, lon_rad)
 c_E = R_E_KM / denom
